@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel="stylesheet" href="css/toastify.min.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/toastify-js.js"></script>
+    <style>
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <div class="row d-flex justify-content-center">PHIẾU XUẤT KHO</div>
+                <div class="row">
+
+                    <div class="col-4"> Mã sản phẩm</div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <input disabled type="text" class="form-control disabled" name="full_name" id="maSp"
+                                aria-describedby="helpId" placeholder="">
+                            <div id="fullNameError" style="color: red;"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="">Tên sản phẩm</label>
+                        <input disabled type="text" class="form-control" name="full_name" id="tenSp"
+                            aria-describedby="helpId" placeholder="">
+                        <div id="fullNameError" style="color: red;"></div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="">Danh mục sản phẩm</label>
+                        <input disabled type="text" class="form-control" name="full_name" id="dmSp"
+                            aria-describedby="helpId" placeholder="">
+                        <div id="fullNameError" style="color: red;"></div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-12">
+                        <label for="">Đơn giá</label>
+                        <input type="text" class="form-control" name="full_name" id="donGia" aria-describedby="helpId"
+                            placeholder="">
+                        <div id="donGiaError" style="color: red;"></div>
+
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-4">
+                        <label for="">Số lượng xuất kho</label>
+                        <input type="text" class="form-control" name="full_name" id="slXuatkho"
+                            aria-describedby="helpId" placeholder="">
+                        <div id="slXuatkhoError" style="color: red;"></div>
+
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="">Ngày xuất kho</label>
+                        <input type="date" class="form-control" name="full_name" id="ngayXuatKho"
+                            aria-describedby="helpId" placeholder="">
+                        <div id="ngayXuatKhoError" style="color: red;"></div>
+
+                    </div>
+
+                    <div class="form-group col-4">
+                        <div for="">&nbsp;</div>
+                        <button disabled name="" onclick="btnXuatKho()" type="submit" id=""
+                            class="btn btn-primary btnXuatKho" href="#" role="button">Xuất
+                            kho</button>
+
+
+                    </div>
+                    <input style="display: none;" id="slconTrenRow" for=""></input>
+                    <input id="slconupdate" for=""></input>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row d-flex ">DANH SÁCH SẢN PHẨM </div>
+
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã SP</th>
+                            <th>Tên SP</th>
+                            <th>SL còn</th>
+
+                            <th>Danh mục SP</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="loadDssp">
+                        <tr>
+                            <td>#</td>
+                            <td>Mã SP</td>
+                            <td>Tên SP</td>
+                            <td>SL còn</td>
+
+                            <td>Danh mục SP</td>
+                            <td>
+                                <button type="button" data-id="${index}" class="btn  updateBtn"><i
+                                        class="fas fa-shopping-cart"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-center">Tổng số lượng còn</td>
+                            <!-- Các cột cho số lượng học sinh từng khối lớp -->
+                            <td id="tongSpCon">
+
+
+                            </td>
+
+
+
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">DANH SÁCH SẢN PHẨM ĐÃ XUẤT KHO </div>
+        <div class="row">
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Mã SP</th>
+                        <th>Tên SP</th>
+                        <th>Danh mục SP</th>
+                        <th>SL xuất</th>
+                        <th>Đơn giá</th>
+                        <th>Ngày xuất</th>
+                        <th>Thành tiền</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="loadxuatkho">
+                    <tr>
+                        <td>#</td>
+                        <td>Mã SP</td>
+                        <td>Tên SP</td>
+                        <td>Danh mục SP</td>
+                        <td>SL xuất</td>
+                        <td>Đơn giá</td>
+                        <td>Ngày xuất</td>
+                        <td>Thành tiền</td>
+                        <td>
+                            <button type="button" data-id="${index}" class="btn  deleteBtn"><i
+                                    class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <td colspan="4" class="text-center" id="">TỔNG SỐ LƯỢNG XUẤT KHO</td>
+                    <!-- Các cột cho số lượng học sinh từng khối lớp -->
+                    <td id="tongSlXuatkho22">
+
+                    </td>
+                    <td colspan="2" class="text-center" id="tongSlThanhTien">TỔNG SỐ LƯỢNG THÀNH TIỀN</td>
+                    <!-- Các cột cho số lượng học sinh từng khối lớp -->
+                    <td>
+
+                        <label id="tongThanhTien"></label>
+                    </td>
+
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="js/jquery-3.3.1.slim.min.js"></scrip> -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/student.js"></script>
+
+</body>
+
+
+
+<script>
+
+
+    let lisSP = [
+        { maSp: "100001", tenSp: "IPhone 5", slCon: "25", dmSp: "Dien thoai" },
+        { maSp: "100002", tenSp: "IPhone 5", slCon: "20", dmSp: "Dien thoai" },
+        { maSp: "100004", tenSp: "Cake 1", slCon: "50", dmSp: "Tivi" },
+
+    ];
+    class Validator {
+        static validateDonGia(dongia) {
+            var regex = /^[1-9]\d*$/;
+            if (regex.test(dongia)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+        static validateNgayXuatKho = (birthDay) => {
+            let selectedDate = new Date(birthDay);
+            let currentDate = new Date();
+            return selectedDate < currentDate;
+        }
+        static validateSoLuongXuatKho(soluong) {
+            var regex = /^[1-9]\d*$/;
+            if (regex.test(soluong)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
+    }
+
+    function formatDate(dateString) {
+        let dateParts = dateString.split('-');
+        let year = dateParts[0];
+        let month = dateParts[1];
+        let day = dateParts[2];
+        return `${day}/${month}/${year}`;
+    }
+    const db = new LocalStorageHandler('final');
+    const db2 = new LocalStorageHandler('DanhSachSp');
+
+    $(document).ready(function () {
+
+        disPlayXuatKho();
+        const loadData = function () {
+            let data = db2.getData();
+            $('#loadDssp').empty();
+            let i = 1;
+            data[0].forEach(function (item, index) {
+                const row = `
+                <tr>
+                            <td>${i++}</td>
+                            <td>${item.maSp}</td>
+                            <td>${item.tenSp}</td>
+                            <td>${item.slCon}</td>
+                            <td>${item.dmSp}</td>
+                            <td>
+                                <button type="button" onclick="chekcOut(${index})" data-id="${index}" class="btn checkout"><i
+                                        class="fas fa-shopping-cart"></i></button>
+
+                            </td>
+                        </tr>`;
+                $('#loadDssp').append(row);
+            });
+
+
+        }
+        const tongSlCon = function () {
+            let sum = 0;
+            lisSP.forEach(function (item, index) {
+                sum += parseInt(item.slCon);
+            });
+            $('#tongSpCon').text(sum);
+        }
+
+        loadData();
+        tongSlCon();
+
+
+    });
+    const chekcOut = function (id) {
+
+        const item = db2.getData()[0][id];
+        $('#maSp').val(item.maSp);
+        $('#tenSp').val(item.tenSp);
+        $('#dmSp').val(item.dmSp);
+        $('#slconTrenRow').val(item.slCon);
+        var button = $(".btnXuatKho");
+        $('.btnXuatKho').data('edit', id);
+        button.removeAttr("disabled");
+
+    }
+    const tongSoLuongXuatKho = function () {
+        let sum = 0;
+        db.getData().forEach(function (item, index) {
+            sum += parseInt(item.slXuatkho);
+        });
+        $('#tongSlXuatkho22').text(sum);
+    }
+    const tongThanhTien = function () {
+        let sum = 0;
+        db.getData().forEach(function (item, index) {
+            sum += parseInt(item.thanhTien);
+        });
+        $('#tongThanhTien').text(sum);
+    }
+    const disPlayXuatKho = function () {
+        let data = db.getData();
+        $('#loadxuatkho').empty();
+        let i = 1;
+        data.forEach(function (item, index) {
+            const row = `
+                <tr>
+                        <td>${i++}</td>
+                        <td>${item.maSp}</td>
+                        <td>${item.tenSp}</td>
+                        <td>${item.dmSp}</td>
+                        <td>${item.slXuatkho}</td>
+                        <td>${item.donGia}</td>
+                        <td>${item.ngayXuatKho}</td>
+                        <td>${item.thanhTien}</td>
+                        <td>
+                            <button onclick="deleteSp(${index})" type="button" data-id="${index}" class="btn  deleteBtn"><i
+                                    class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+               `;
+            $('#loadxuatkho').append(row);
+        });
+
+        tongThanhTien();
+        tongSoLuongXuatKho();
+
+
+
+    }
+    const btnXuatKho = function () {
+        let isValid = true;
+        const donGia = $('#donGia').val();
+        const ngayXuatKho = $('#ngayXuatKho').val();
+        const soLuongCon = $('#slconTrenRow').val();
+        const soLuongXuatKho = $('#slXuatkho').val();
+        if (!Validator.validateDonGia(donGia)) {
+            $('#donGiaError').text("Đơn giá phải là số nguyên");
+            isValid = false;
+        }
+        if (!Validator.validateNgayXuatKho(ngayXuatKho)) {
+            $('#ngayXuatKhoError').text("Ngày xuat kho phải nhỏ hơn  hoặc bằng ngày hiện tại");
+            isValid = false;
+        }
+        if (!Validator.validateSoLuongXuatKho(soLuongXuatKho)) {
+            $('#slXuatkhoError').text("Số lượng xuất kho phải là số nguyên và <= số lượng còn");
+            isValid = false;
+        }
+        if (isValid) {
+            const item = {
+                maSp: $('#maSp').val(),
+                tenSp: $('#tenSp').val(),
+                dmSp: $('#dmSp').val(),
+                donGia: $('#donGia').val(),
+                ngayXuatKho: $('#ngayXuatKho').val(),
+                slXuatkho: $('#slXuatkho').val(),
+                thanhTien: $('#slXuatkho').val() * $('#donGia').val()
+
+            }
+            let slCon_t = $('#slconTrenRow').val();
+            let slXuatkho = $('#slXuatkho').val();
+            let rs = parseInt(slCon_t) - parseInt(slXuatkho);
+
+            let data2 = db2.getData();
+
+            db.addItem(item);
+            disPlayXuatKho();
+
+            let id = $('.btnXuatKho').data('edit');
+            data2[0][id].slCon = rs;
+            db2.saveData(data2);
+            $('#maSp').val('');
+            $('#tenSp').val('');
+            $('#dmSp').val('');
+            $('#donGia').val('');
+            $('#ngayXuatKho').val('');
+            $('#slXuatkho').val('');
+            $('#slconTrenRow').val('');
+
+        }
+
+
+
+    }
+
+    const deleteSp = function (id) {
+        if (window.confirm('Bạn có muốn xóa???')) {
+            db.deleteItem(id);
+            disPlayXuatKho();
+            soLuongCon();
+            soLuongXuatKho();
+        }
+
+    }
+    // const addDanhSachSP = function () {
+    //     db2.addItem(lisSP);
+
+    // }
+
+
+
+</script>
+
+</html>

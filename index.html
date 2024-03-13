@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/toastify.min.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/toastify-js.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <span>QUẢN LÝ HỌC SINH <strong class="" style="color: tomato;">TRƯỜNG THPT ABC</strong></span>
+        </div>
+        <form id="form-class">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Họ và tên học sinh</label>
+                        <input type="text" class="form-control" name="" id="fullName" aria-describedby="helpId"
+                            placeholder="Họ và tên học viên">
+                        <span class="text-danger " id="fullNameError"></span>
+
+                    </div>
+
+                </div>
+                <div class="col-3">
+                    <div id="myForm" class="form-group">
+                        <label for="gender" class="mr-2">Giới tính</label>
+                        <div class="form-group mr-2">
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" checked type="radio" name="gender" id="male" value="1">
+                                <label class="form-check-label" for="male">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="2">
+                                <label class="form-check-label" for="female">Nữ</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="other" value="0">
+                                <label class="form-check-label" for="female">Khác</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="">Ngày sinh</label>
+                        <input type="date" class="form-control " name="" id="birthDay" aria-describedby="helpId"
+                            placeholder="">
+                        <span class="text-danger " id="birthDayError"></span>
+
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Các khối lớp học</label>
+                        <select class="custom-select" name="" id="classRoomBlock">
+                            <option disabled selected>Chọn khối lớp học....</option>
+                            <option value="10">Khối 10</option>
+                            <option value="11">Khối 11</option>
+                            <option value="12">Khối 12</option>
+                        </select>
+                        <span class="text-danger " id="classRoomBlockError"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Chọn lớp học</label>
+                        <select class="custom-select" name="" id="classRoom">
+                            <option disabled selected>Chọn lớp học....</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Điểm môn toán</label>
+                        <input type="number" class="form-control text-right" name="" id="mathScores"
+                            aria-describedby="helpId" placeholder="HTML vs CSS">
+                        <span class="text-danger " id="mathScoresError"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Điểm môn lý</label>
+                        <input type="number" class="form-control text-right" name="" id="physicsScores"
+                            aria-describedby="helpId" placeholder="JavaScipt">
+                        <span class="text-danger  " id="physicsScoresError"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Điểm môn hoá</label>
+                        <input type="number" class="form-control text-right" name="" id="chemistryScores"
+                            aria-describedby="helpId" placeholder="JQuery">
+                        <span class="text-danger " id="chemistryScoresError"></span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <a name="" id="btn-save" class="btn " href="#" role="button"
+                        style="border: 1px solid tomato;color: tomato;">Lưu
+                        thông
+                        tin</a>
+
+                </div>
+
+            </div>
+        </form>
+        <div class="row d-flex justify-content-center align-items-center mb-3">
+            <span>DANH SÁCH HỌC SINH</span>
+        </div>
+        <form id="form-search" action="">
+            <div class="row">
+                <div class="col-3">
+                    <span>Nhập tên học sinh cần tìm kiếm</span>
+                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" name="" id="frm-search" class="form-control" placeholder=""
+                            aria-describedby="helpId">
+                        <span class="text-danger " id="searchError"></span>
+
+                    </div>
+                </div>
+                <div class="col-1">
+                    <a name="" id="search" onclick="searchByName()" class="btn btn-success" href="#"
+                        role="button">Search</a>
+                </div>
+
+
+            </div>
+        </form>
+        <div class="row">
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Họ và tên</th>
+                        <th>Giới tính</th>
+                        <th>Ngày sinh</th>
+                        <th>Khối</th>
+                        <th>Lớp học</th>
+                        <th>M. Toán</th>
+                        <th>M. Lý</th>
+                        <th>M. Hoá</th>
+                        <th>Đ.TB</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot class="text-danger">
+                    <tr id="footerRow">
+                        <!-- Các cột cho số lượng học sinh từng khối lớp -->
+                        <td colspan="5"></td>
+                        <td id="">Thống kê: </td>
+                        <td id="countBlock10"></td>
+                        <td id="countBlock11"></td>
+                        <td id="countBlock12"></td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="js/jquery-3.3.1.slim.min.js"></scrip> -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/student.js"></script>
+
+</body>
+
+<script>
+    //model thông báo
+    let messageConfirm = (mess) => {
+        Toastify({
+            text: mess,
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: 'right',
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        }).showToast();
+    }
+    const std = new StudentManager();
+    //khai báo một đối tượng student rổng
+    const student = {
+        fullName: "",
+        gender: "",
+        birthDay: "",
+        classRoomBlock: "",
+        classRoom: "",
+        mathScores: "",
+        physicsScores: "",
+        chemistryScores: ""
+    };
+    //load đối tượng student lên table
+    let displayTable = (datas) => {
+        // var datas = std.getStudents();
+        $('table tbody').html('');
+        let i = 1;
+        datas.forEach(function (item, index) {
+            // hiển thị giới tính theo value
+            let genderText = std.gender[item.gender];
+            //tính điểm trung bình
+            let averageScore = std.calculateAverageScore(item.mathScores, item.physicsScores, item.chemistryScores);
+            var row = `
+                    <tr>
+                        <td scope="row">${i++}</td>
+                        <td>${item.fullName}</td>
+                        <td>${genderText}</td>
+                        <td>${std.formatDate(item.birthDay)}</td>
+                        <td>${item.classRoomBlock}</td>
+                        <td>${item.classRoom}</td>
+                        <td>${item.mathScores}</td>
+                        <td>${item.physicsScores}</td>
+                        <td>${item.chemistryScores}</td>
+                        <td>${averageScore}</td>
+                        <td>
+                            <button type="button" onclick="confirmEdit(${index})" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>
+                            <button type="button" onclick="confirmDelete(${index})" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+            `;
+            $('table tbody').append(row);
+        });
+    }
+    //lấy giá trị từ form
+    let getFormData = () => {
+        return {
+            fullName: $('#fullName').val(),
+            gender: $('input[name="gender"]:checked').val(),
+            birthDay: $('#birthDay').val(),
+            classRoomBlock: $('#classRoomBlock').val(),
+            classRoom: $('#classRoom').val(),
+            mathScores: $('#mathScores').val(),
+            physicsScores: $('#physicsScores').val(),
+            chemistryScores: $('#chemistryScores').val()
+        };
+    };
+    //xoá các giá trị trong form
+    let clearForm = () => {
+        $('#fullName').val('');
+        $('input[name="gender"]').prop('checked', false); // Uncheck all radio buttons for gender
+        $('#birthDay').val('');
+        $('#classRoomBlock').val('');
+        $('#classRoom').empty(); // Empty the select element
+        $('#classRoom').append('<option disabled selected>Chọn lớp học....</option>'); // Add default option
+        $('#mathScores').val('');
+        $('#physicsScores').val('');
+        $('#chemistryScores').val('');
+    };
+    let resetValidate = () => {
+        $('#fullNameError').text('');
+        $('#birthDayError').text('');
+        $('#classRoomBlockError').text('');
+        $('#classRoomError').text('');
+        $('#mathScoresError').text('');
+        $('#physicsScoresError').text('');
+        $('#chemistryScoresError').text('');
+    }
+    
+    // Hàm cập nhật danh sách lớp học dựa trên khối lớp học được chọn
+    let updateClassRoomOptions = (selectedBlock) => {
+        //lấy dữ liệu tương ứng khối lớp
+        let classRoom = std.classesByBlock[selectedBlock];
+        //lặp qua từng giá trị rồi đổ data vào select list
+        $('#classRoom').empty();
+        $.each(classRoom, function (index, value) {
+            $('#classRoom').append('<option value="' + value + '">' + value + '</option>');
+
+        });
+    }
+
+    //hàm xoá 1 row trên table
+    let confirmDelete = (id) => {
+
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            std.deleteStudent(id);
+            //sau khi xoá xong hiển thị thông báo và hiển thị lại table
+            messageConfirm("Xoá thành công!")
+            displayTable(std.getStudents());
+            updateFooterRow(std.getStudents())
+        }
+    }
+    //hàm cập nhật lại giá trị
+    let confirmEdit = (id) => {
+        let student = {
+            fullName: "",
+            gender: "",
+            birthDay: "",
+            classRoomBlock: "",
+            classRoom: "",
+            mathScores: "",
+            physicsScores: "",
+            chemistryScores: ""
+        };
+        //lấy ra student cần cập nhật
+        student = std.getStudents()[id];
+        // Change button text to "Cập nhật thông tin"
+        $('#btn-save').text('Cập nhật thông tin');
+        //gán ngược lại trên form
+        $('#fullName').val(student.fullName);
+        $('#birthDay').val(student.birthDay);
+        $('#chemistryScores').val(student.chemistryScores);
+        $('#physicsScores').val(student.physicsScores);
+        $('#mathScores').val(student.mathScores);
+        $('#classRoomBlock').val(student.classRoomBlock);
+        updateClassRoomOptions(student.classRoomBlock);
+        $('input[name="gender"]').each(function () {
+            if ($(this).val() === student.gender) {
+                $(this).prop('checked', true);
+            }
+        });
+
+        //sử lý sự kiện cập nhật khi nhất click
+        $('#btn-save').off('click').on('click', function (e) {
+            e.preventDefault();
+            resetValidate();
+            if (std.validateForm()) {
+
+
+                let data = getFormData();
+                std.updateStudent(id, data);
+                messageConfirm("Cập nhật thành công!!!")
+                displayTable(std.getStudents());
+                $('#form-class').trigger('reset'); // Reset the form
+                clearForm();
+                // Change button text back to "Lưu thông tin"
+                $('#btn-save').text('Lưu thông tin');
+
+                // Reattach click event for saving data
+                $('#btn-save').off('click').on('click', function () {
+                    let dataStd = getFormData();
+                    std.addStudent(getFormData());
+                    messageConfirm("Thêm mới thành công");
+                    displayTable(std.getStudents());
+                    updateFooterRow(std.getStudents());
+                    $('#form-class').trigger('reset');
+                });
+
+            }
+
+        });
+
+    }
+    //hiển thị các học sinh có tên giống nhau
+    let searchByName = () => {
+        $('#searchError').text('');
+        let valid = true;
+        if (!std.validateFullName(($('#frm-search').val()))) {
+            $('#searchError').text('Họ và tên học sinh không được bỏ trống, chỉ chứa các ký tự alphabet và khoảng trắng');
+            valid = false;
+
+        }
+        if (valid) {
+            let listStd = std.getStudents();
+            let searchQuery = $('#frm-search').val().trim().toLowerCase();
+            let data = std.searchStudent(searchQuery);
+            displayTable(data);
+        }
+
+
+    }
+    // Hàm tính số lượng học sinh từng khối lớp sử dụng reduce
+    function countStudentsByBlock(students) {
+        return students.reduce((counts, student) => {
+            const block = student.classRoomBlock;
+            counts[block] = (counts[block] || 0) + 1;
+            return counts;
+        }, {});
+    }
+    function countStudents(params) {
+
+
+    }
+    // Hàm cập nhật số lượng học sinh từng khối lớp vào row Footer
+    function updateFooterRow(students) {
+        // Tính số lượng học sinh từng khối lớp
+        const countsByBlock = countStudentsByBlock(std.getStudents());
+        $('#countBlock10').text('Khối 10: ' + countsByBlock['10'] || 0);
+        $('#countBlock11').text('Khối 11: ' + countsByBlock['11'] || 0);
+        $('#countBlock12').text('Khối 12: ' + countsByBlock['12'] || 0);
+    }
+    $(document).ready(() => {
+        updateFooterRow(std.getStudents());
+        //gọi hàm hiển thị table
+        displayTable(std.getStudents());
+        //xử lý sự kiện nhấn nút Lưu
+        $('#btn-save').off('click').on('click', function () {
+            resetValidate();
+            if (std.validateForm()) {
+                // e.preventDefault();
+                let dataStd = getFormData();
+                std.addStudent(getFormData());
+                messageConfirm("Thêm mới thành công");
+                displayTable(std.getStudents());
+                updateFooterRow(std.getStudents());
+                $('#form-class').trigger('reset');
+            }
+
+        });
+        //sự kiện khi chọn khối lớp
+        $('#classRoomBlock').change(function (e) {
+            e.preventDefault();
+            updateClassRoomOptions($(this).val());
+
+
+        });
+        // console.log(getAllIdsFromForm('form-class'));
+
+
+    });
+    function getAllIdsFromForm(formId) {
+        const form = document.getElementById(formId);
+        const elements = form.elements;
+
+        const ids = [];
+
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].id) {
+                ids.push(elements[i].id);
+            }
+        }
+
+        return ids;
+    }
+
+
+
+</script>
+
+
+</html>
